@@ -29,7 +29,6 @@ export default function SignupPage(){
                 const res=await signup(credentials.name,credentials.email,credentials.password);
                 toast.success("signup success");
                 if(res.success){
-                    setCredentials({name:"",email:"",password:""})
                     router.push(`/verifyemail`);
                 }
             }
