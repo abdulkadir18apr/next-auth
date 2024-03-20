@@ -10,7 +10,8 @@ import toast from "react-hot-toast";
 export default function VerifyEmailPage(){
 
     const [userCode,setUserCode]=useState<{[key:number]:string}>({1:"",2:"",3:"",4:"",5:"",6:"",7:"",8:""})
-    const {verifyEmail,credentials}=useAuthContext()
+    const {verifyEmail,credentials,setCredentials}=useAuthContext();
+
     const router=useRouter()
 
     const handleVerifyOtp=async()=>{
@@ -20,6 +21,7 @@ export default function VerifyEmailPage(){
             const res=await verifyEmail(credentials.email,otp,undefined);
             if(res.success){
                 toast.success("verification success");
+                setCredentials({name:"",email:"",password:""})
                 router.push("/login")
             }
 
