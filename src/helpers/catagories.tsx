@@ -1,0 +1,1 @@
+export const categories= ['Mens-cloathing', 'Health','Garden','Home','Computers','Jewelery','Toys','Music','Industrial','Shoes','Automotive','Baby','Kids','Electronics','Books','Beauty','Sports','Games','Tools','Outdoors','women-clotging','washing-machine','coolers','Ac','Stationary','Accesories','mouse','keyboard'];

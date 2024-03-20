@@ -1,0 +1,88 @@
+.loginContainer{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 2rem;
+    min-height:calc(100vh - 138px);
+    padding: 1rem 3rem;
+    .login{
+        border:1px solid #e5e7eb;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap:1rem;
+        padding: 2rem 2rem;
+        width:  25rem;
+        h1{
+            font-weight: 800;
+            font-size: 24px;
+        }
+        .loginHeader{
+            font-weight: 500;
+            text-align: center;
+            h2{
+                font-size: 20px;
+            }h4{
+                font-size: 12px;
+
+            }
+        }
+        .form{
+            display: flex;
+            flex-direction: column;
+            gap:1.5rem;
+            justify-content: center;
+            width: 100%;
+            .feild{
+                display: flex;
+                flex-direction: column;
+                gap:2px;
+                label{
+                    color:black;
+                    font-weight: 500;
+                }
+                input{
+                    border:1px solid black;
+                    height: 2rem;
+                    border-radius: 5px;
+                    padding-left: 5px;
+                   
+                }
+                span{
+                    position: relative;
+                    left: 85%;
+                    bottom: 28px;
+                    text-decoration: underline;
+                    font-size: small;
+                    cursor: pointer;
+                }
+             
+            }
+            .loginBtn{
+                background-color: black;
+                color:white;
+                width: 100%;
+                border-radius: 8px;
+                padding: 8px;
+                font-weight: 800;
+                font-size: large;
+
+
+            }
+            .line{
+                width:100%;
+                height: 2px;
+                background-color: gray;
+
+            }
+            p{
+                text-align: center;
+            }
+        }
+        
+    }
+
+}
