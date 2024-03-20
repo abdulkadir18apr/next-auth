@@ -1,4 +1,7 @@
 "use client"
+
+
+import { Loader } from "@/components/Loader";
 import { useAuthContext } from "@/context/AuthContext";
 import styles from "@/styles/login.module.scss";
 import Link from "next/link";
@@ -8,31 +11,33 @@ import toast from "react-hot-toast";
 
 export default function LoginPage() {
 
-    const {state,credentials,setCredentials,login}=useAuthContext();
-    const router=useRouter();
+    const { state, credentials, setCredentials, login } = useAuthContext();
 
-    const handleInputChange=(e:any)=>{
-        setCredentials((prev:any)=>({...prev,name:"",[e.target.name]:e.target.value}))
+    console.log(state?.isLoading);
+
+    const router = useRouter();
+
+    const handleInputChange = (e: any) => {
+        setCredentials((prev: any) => ({ ...prev, name: "", [e.target.name]: e.target.value }))
     }
 
-    const handleLogin=async()=>{
-        try{
-            const res=await login(credentials.email,credentials.password);
-            if(!res.success && res.message==="please verify your email"){
+    const handleLogin = async () => {
+        try {
+            const res = await login(credentials.email, credentials.password);
+            if (!res.success && res.message === "please verify your email") {
                 router.push("/verifyemail");
-            }else{
+            } else {
                 router.push("/categories");
             }
-        }catch(err:any){
+        } catch (err: any) {
             console.log(err);
-            toast.error(err.message)
+            toast.error("Incorrect Credentials")
         }
 
     }
-    
 
+    const [showPassword, setShowPassword] = useState(false)
 
-    const [showPassword,setShowPassword]=useState(false)
     return (
         <div className={styles.loginContainer}>
             <div className={styles.login}>
@@ -44,14 +49,14 @@ export default function LoginPage() {
                 <div className={styles.form}>
                     <div className={styles.feild}>
                         <label htmlFor="email">Email</label>
-                        <input type="email" name="email" id="email" placeholder="Email" value={credentials.email} onChange={handleInputChange}  />
+                        <input type="email" name="email" id="email" placeholder="Email" value={credentials.email} onChange={handleInputChange} />
                     </div>
                     <div className={styles.feild}>
                         <label htmlFor="password">Password</label>
-                        <input type={showPassword?"text":"password"} name="password" id="password" placeholder="Password" value={credentials.password} onChange={handleInputChange} />
-                        <span onClick={()=>setShowPassword((prev)=>!prev)}>{showPassword?"hide":"show"}</span>
+                        <input type={showPassword ? "text" : "password"} name="password" id="password" placeholder="Password" value={credentials.password} onChange={handleInputChange} />
+                        <span onClick={() => setShowPassword((prev) => !prev)}>{showPassword ? "hide" : "show"}</span>
                     </div>
-                    <button className={styles.loginBtn} onClick={handleLogin}>Login</button>
+                    <button className={styles.loginBtn} onClick={handleLogin}>{state?.isLoading ? "Loading...": "Login"}</button>
                     <div className={styles.line}></div>
                     <p>Don&apos;t Have an Account? <Link href="/signup">SignUp</Link></p>
                 </div>

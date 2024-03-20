@@ -14,6 +14,7 @@ export default function SignupPage(){
     const router=useRouter();
 
     const [showPassword,setShowPassword]=useState(false)
+    const [isLoading,setIsLoading]=useState(false)
     
 
 
@@ -25,6 +26,7 @@ export default function SignupPage(){
 
     const onSignup=async()=>{
         try{
+            setIsLoading(true)
             if(credentials.name.length>0 && credentials.email.length>0 && credentials.password.length>0){ 
                 const res=await signup(credentials.name,credentials.email,credentials.password);
                 toast.success("signup success");
@@ -35,6 +37,8 @@ export default function SignupPage(){
         }catch(err:any){
             console.log(err);
             toast.error("signup failed")
+        }finally{
+            setIsLoading(false)
         }
     
     }
@@ -57,7 +61,7 @@ export default function SignupPage(){
                         <input type={showPassword?"text":"password"} name="password" id="password" placeholder="Password" value={credentials.password} onChange={handleInputChange} />
                         <span onClick={()=>setShowPassword((prev)=>!prev)}>{showPassword?"hide":"show"}</span>
                     </div>
-                    <button className={styles.loginBtn} onClick={onSignup}>Create Account</button>
+                    <button className={styles.loginBtn} onClick={onSignup}>{isLoading?"loading...":"Create Account"}</button>
                     <div className={styles.line}></div>
                     <p>Have an Account? <Link href="/login">Login</Link></p>
                 </div>

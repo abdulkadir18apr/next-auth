@@ -60,6 +60,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     const signup=async(name:string,email:string,password:string)=>{
       try{
+     
         const res=await axios.post("/api/users/signup",{name,email,password});
         return res.data
       }catch(err:any){
@@ -77,6 +78,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
     const login=async(email:string,password:string)=>{
       try{
+        dispatch({type:"SET_LOADING"})
         const res=await axios.post("/api/users/login",{email,password});
         dispatch({type:"SET_LOGIN"})
         return res.data
