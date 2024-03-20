@@ -82,7 +82,7 @@ export default function CategoriesPage() {
     const handleupdateClick=async()=>{
         try{
 
-            const res=await updateInterest(state?.user?._id,selectedCategory);
+            const res=await updateInterest(selectedCategory);
             if(res.success){
                 toast("Interest Saved Successfully")
             }
