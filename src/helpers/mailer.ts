@@ -50,22 +50,23 @@ function encryptOTP(otp: string, secretKey: string): string {
 
             if (res) {
 
-                const transport = nodemailer.createTransport({
-                    host: "sandbox.smtp.mailtrap.io",
-                    port: 2525,
+                const transporter = nodemailer.createTransport({
+                    service: 'gmail',
                     auth: {
-                        user: "b63c1e9fc24de1",
-                        pass: "60034241cc460e"
-                    }
-                });
+                      user: 'mkshrivastav70@gmail.com',
+                      pass: 'afsq ltyw wsdm qvgy',
+                    },
+                  });
+                  
+                  
 
                 const mailOptions = {
-                    from: "abdulq314@gmail.com",
+                    from: "mkshrivastav70@gmail.com",
                     to: email,
                     subject: emailType === "VERIFY" ? "verify your Email" : "RESET PASSWORD",
                     html: `<p>Click on link to verify your password <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}&otp=${encryptOTP} ">Clcik here</a> OR </p>  <h2>ENTER OTP ${otp}`
                 }
-                const mailResponse = await transport.sendMail(mailOptions);
+                const mailResponse = await transporter.sendMail(mailOptions);
                 return mailResponse
 
             }
