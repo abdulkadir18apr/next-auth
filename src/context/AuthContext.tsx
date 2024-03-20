@@ -43,7 +43,7 @@ interface AuthContextValue {
     login:(email:string,password:string)=>Promise<any>;
     logout:()=>Promise<any>;
     fetchInterest:()=>Promise<any>;
-    updateInterest:(userId:string,interests:string[] |null )=>Promise<any>;
+    updateInterest:(interests:string[] |null )=>Promise<any>;
     signup:(name:string , email:string,password:string)=>Promise<any>;
     verifyEmail:(email:string,otp:string,token:string | undefined)=>Promise<any>;
     setCredentials:React.Dispatch<any>;
@@ -118,9 +118,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         dispatch({type:"SET_ERROR",payload:err.message})
       }
     }
-    const updateInterest=async(userId:string,interests:string[] | null)=>{
+    const updateInterest=async(interests:string[] | null)=>{
       try{
-        const res=await axios.post("/api/users/interest",{userId,interests});
+        const res=await axios.post("/api/users/interest",{interests});
         dispatch({type:"SET_INTEREST",payload:res.data.interests});
         return res.data
 

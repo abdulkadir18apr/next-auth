@@ -24,8 +24,9 @@ export async function GET(request:NextRequest){
 
 export async function POST(request:NextRequest){
     try{
+        const userId=await getDataFromToken(request);
         const reqBody=await request.json();
-        const {userId,interests}=reqBody;
+        const {interests}=reqBody;
 
         const userInterest=await Interests.findOne({userId});
         if(!userInterest){
